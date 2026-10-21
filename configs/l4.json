@@ -1,0 +1,18 @@
+{
+  "mode": "l4",
+  "listen": ":8080",
+  "metrics_listen": ":9090",
+  "algorithm": "round_robin",
+  "backends": [
+    { "name": "backend-1", "addr": "localhost:9001" },
+    { "name": "backend-2", "addr": "localhost:9002" },
+    { "name": "backend-3", "addr": "localhost:9003" }
+  ],
+  "health_check": {
+    "type": "tcp",
+    "interval": "2s",
+    "timeout": "1s",
+    "healthy_threshold": 2,
+    "unhealthy_threshold": 3
+  }
+}

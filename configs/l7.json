@@ -1,0 +1,22 @@
+{
+  "mode": "l7",
+  "listen": ":8080",
+  "metrics_listen": ":9090",
+  "algorithm": "least_connections",
+  "backends": [
+    { "name": "backend-1", "addr": "localhost:9001" },
+    { "name": "backend-2", "addr": "localhost:9002" },
+    { "name": "backend-3", "addr": "localhost:9003" }
+  ],
+  "health_check": {
+    "type": "http",
+    "path": "/health",
+    "interval": "2s",
+    "timeout": "1s",
+    "healthy_threshold": 2,
+    "unhealthy_threshold": 3
+  },
+  "passive_failure_threshold": 3,
+  "dial_timeout": "2s",
+  "shutdown_timeout": "10s"
+}

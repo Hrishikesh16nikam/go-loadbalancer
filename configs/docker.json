@@ -1,0 +1,12 @@
+{
+  "mode": "l7",
+  "listen": ":8080",
+  "metrics_listen": ":9090",
+  "algorithm": "least_connections",
+  "backends": [
+    { "name": "backend-1", "addr": "backend-1:9001" },
+    { "name": "backend-2", "addr": "backend-2:9002" },
+    { "name": "backend-3", "addr": "backend-3:9003" }
+  ],
+  "health_check": { "type": "http", "path": "/health", "interval": "2s", "timeout": "1s" }
+}

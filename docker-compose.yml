@@ -1,0 +1,21 @@
+# docker compose up --build
+# Then: curl -i localhost:8080   and   curl localhost:9090/metrics
+services:
+  lb:
+    build: .
+    ports:
+      - "8080:8080"
+      - "9090:9090"
+    depends_on: [backend-1, backend-2, backend-3]
+
+  backend-1:
+    build: .
+    entrypoint: ["backend", "-addr", ":9001", "-name", "backend-1"]
+
+  backend-2:
+    build: .
+    entrypoint: ["backend", "-addr", ":9002", "-name", "backend-2"]
+
+  backend-3: # deliberately slow, so least_connections has something to route around
+    build: .
+    entrypoint: ["backend", "-addr", ":9003", "-name", "backend-3", "-delay", "200ms"]
